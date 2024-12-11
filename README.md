@@ -1,3 +1,6 @@
+# Movie DATABASE
+
+
 ####  🎫 Subscription Table
 
     CREATE TABLE subscription(
