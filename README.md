@@ -1,54 +1,56 @@
 ####  🎫 Subscription Table
-CREATE TABLE subscription(
-	SubscriptionID INT AUTO_INCREMENT PRIMARY KEY,
-    SubscriptionType VARCHAR(50) NOT NULL,
-    MonthlyFee DECIMAL(10,2) NOT NULL,
-    CHECK (SubscriptionType = 'Basic' OR SubscriptionType = 'Premium')
-);
+
+    CREATE TABLE subscription(
+        SubscriptionID INT AUTO_INCREMENT PRIMARY KEY,
+        SubscriptionType VARCHAR(50) NOT NULL,
+        MonthlyFee DECIMAL(10,2) NOT NULL,
+        CHECK (SubscriptionType = 'Basic' OR SubscriptionType = 'Premium')
+    );
 
 ####  👤 Users Table
-CREATE TABLE users(
-	UserID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(100) NOT NULL,
-    LastName VARCHAR(100) NOT NULL,
-    Email VARCHAR(100) NOT NULL UNIQUE,
-    RegistrationDate DATE NOT NULL,
-    SubscriptionID INT,
-	FOREIGN KEY (SubscriptionID) REFERENCES subscription(SubscriptionID)
-);
+
+    CREATE TABLE users(
+        UserID INT AUTO_INCREMENT PRIMARY KEY,
+        FirstName VARCHAR(100) NOT NULL,
+        LastName VARCHAR(100) NOT NULL,
+        Email VARCHAR(100) NOT NULL UNIQUE,
+        RegistrationDate DATE NOT NULL,
+        SubscriptionID INT,
+        FOREIGN KEY (SubscriptionID) REFERENCES subscription(SubscriptionID)
+    );
 
 ####  🎬 Movie Table
-CREATE TABLE movie(
-	MovieID INT AUTO_INCREMENT PRIMARY KEY,
-    Title VARCHAR(255) NOT NULL,
-    Genre VARCHAR(100),
-    ReleaseYear INT,
-    Duration INT,
-    Rating VARCHAR(10)
-);
+    CREATE TABLE movie(
+        MovieID INT AUTO_INCREMENT PRIMARY KEY,
+        Title VARCHAR(255) NOT NULL,
+        Genre VARCHAR(100),
+        ReleaseYear INT,
+        Duration INT,
+        Rating VARCHAR(10)
+    );
 
 ####  🌟 Review Table
-CREATE TABLE review(
-	ReviewID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT NOT NULL,
-    MovieID INT NOT NULL,
-    Rating INT CHECK (Rating BETWEEN 1 AND 10),
-    ReviewText TEXT NOT NULL,
-    ReviewDate DATE NOT NULL,
-    FOREIGN KEY (UserID) REFERENCES users(UserID),
-    FOREIGN KEY (MovieID) REFERENCES movie(MovieID)
-);
+    CREATE TABLE review(
+        ReviewID INT AUTO_INCREMENT PRIMARY KEY,
+        UserID INT NOT NULL,
+        MovieID INT NOT NULL,
+        Rating INT CHECK (Rating BETWEEN 1 AND 10),
+        ReviewText TEXT NOT NULL,
+        ReviewDate DATE NOT NULL,
+        FOREIGN KEY (UserID) REFERENCES users(UserID),
+        FOREIGN KEY (MovieID) REFERENCES movie(MovieID)
+    );
 
 ####  📜 Watch History Table
-CREATE TABLE watchhistory(
-	WatchHistoryID INT AUTO_INCREMENT PRIMARY KEY,
-    UserID INT NOT NULL,
-    MovieID INT NOT NULL,
-    WatchDate DATE NOT NULL,
-    CompletionPercentage INT DEFAULT 0 CHECK (CompletionPercentage BETWEEN 0 AND 100),
-    FOREIGN KEY (UserID) REFERENCES users(UserID),
-    FOREIGN KEY (MovieID) REFERENCES movie(MovieID)
-);
+    CREATE TABLE watchhistory(
+        WatchHistoryID INT AUTO_INCREMENT PRIMARY KEY,
+        UserID INT NOT NULL,
+        MovieID INT NOT NULL,
+        WatchDate DATE NOT NULL,
+        CompletionPercentage INT DEFAULT 0 CHECK (CompletionPercentage BETWEEN 0 AND 100),
+        FOREIGN KEY (UserID) REFERENCES users(UserID),
+        FOREIGN KEY (MovieID) REFERENCES movie(MovieID)
+    );
 
 
 #### Question 1
