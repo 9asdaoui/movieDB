@@ -1,4 +1,4 @@
--- 🎫 Subscription Table
+####  🎫 Subscription Table
 CREATE TABLE subscription(
 	SubscriptionID INT AUTO_INCREMENT PRIMARY KEY,
     SubscriptionType VARCHAR(50) NOT NULL,
@@ -6,7 +6,7 @@ CREATE TABLE subscription(
     CHECK (SubscriptionType = 'Basic' OR SubscriptionType = 'Premium')
 );
 
--- 👤 Users Table
+####  👤 Users Table
 CREATE TABLE users(
 	UserID INT AUTO_INCREMENT PRIMARY KEY,
     FirstName VARCHAR(100) NOT NULL,
@@ -17,7 +17,7 @@ CREATE TABLE users(
 	FOREIGN KEY (SubscriptionID) REFERENCES subscription(SubscriptionID)
 );
 
--- 🎬 Movie Table
+####  🎬 Movie Table
 CREATE TABLE movie(
 	MovieID INT AUTO_INCREMENT PRIMARY KEY,
     Title VARCHAR(255) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE movie(
     Rating VARCHAR(10)
 );
 
--- 🌟 Review Table
+####  🌟 Review Table
 CREATE TABLE review(
 	ReviewID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT NOT NULL,
@@ -39,7 +39,7 @@ CREATE TABLE review(
     FOREIGN KEY (MovieID) REFERENCES movie(MovieID)
 );
 
--- 📜 Watch History Table
+####  📜 Watch History Table
 CREATE TABLE watchhistory(
 	WatchHistoryID INT AUTO_INCREMENT PRIMARY KEY,
     UserID INT NOT NULL,
